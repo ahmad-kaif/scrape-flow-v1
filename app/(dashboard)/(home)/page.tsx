@@ -12,12 +12,11 @@ import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeri
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
 interface HomePageProps {
-  searchParams?: Promise<Record<string, string | undefined>> | Record<string, string | undefined>;
+  searchParams?: Promise<any> | undefined; // Adjusted type to match Next.js expected PageProps type
 }
 
-
-const HomePage = async ({ searchParams = {} }: HomePageProps) => {
-  const resolvedSearchParams = searchParams instanceof Promise ? await searchParams : searchParams;
+const HomePage = async ({ searchParams }: HomePageProps) => {
+  const resolvedSearchParams = searchParams instanceof Promise ? await searchParams : searchParams || {};
   const currentDate = new Date();
   const month = resolvedSearchParams.month
     ? parseInt(resolvedSearchParams.month, 10)
