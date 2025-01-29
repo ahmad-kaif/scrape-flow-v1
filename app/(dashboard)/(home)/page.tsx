@@ -1,3 +1,4 @@
+"use server";
 import { GetPeriods } from "@/actions/analytics/getPeriods";
 import React, { Suspense } from "react";
 import PeriodSelector from "./_components/PeriodSelector";
@@ -11,21 +12,30 @@ import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-interface HomePageProps {
-  searchParams?: Promise<any> | undefined; // Adjusted type to match Next.js expected PageProps type
-}
+// interface HomePageProps {
+//   searchParams?: Record<string, string | undefined>; // Correctly define searchParams type
+// }
 
-const HomePage = async ({ searchParams }: HomePageProps) => {
-  const resolvedSearchParams = searchParams instanceof Promise ? await searchParams : searchParams || {};
+const HomePage = ({
+  searchParams,
+}: {
+  searchParams: { month?: string; year?: string };
+}) => {
   const currentDate = new Date();
-  const month = resolvedSearchParams.month
-    ? parseInt(resolvedSearchParams.month, 10)
-    : currentDate.getMonth() + 1;
-  const year = resolvedSearchParams.year
-    ? parseInt(resolvedSearchParams.year, 10)
-    : currentDate.getFullYear();
 
-  const period: Period = { month, year };
+  const {month,year} = searchParams;
+  const period: Period = {
+    month: month? parseInt(month) : currentDate.getMonth(),
+    year: year? parseInt(year) : currentDate.getFullYear(),
+  }
+  // const month = searchParams.month
+  //   ? parseInt(searchParams.month, 10)
+  //   : currentDate.getMonth() + 1;
+  // const year = searchParams.year
+  //   ? parseInt(searchParams.year, 10)
+  //   : currentDate.getFullYear();
+
+  // const period: Period = { month, year };
 
   return (
     <div className="flex flex-1 flex-col h-full">

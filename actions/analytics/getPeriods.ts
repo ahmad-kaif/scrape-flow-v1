@@ -2,8 +2,7 @@
 
 import prisma from "@/lib/prisma";
 import { Period } from "@/types/analytics";
-import { auth, currentUser } from "@clerk/nextjs/server";
-import { min } from "date-fns";
+import { auth } from "@clerk/nextjs/server";
 
 export async function GetPeriods() {
   const { userId } = auth();
