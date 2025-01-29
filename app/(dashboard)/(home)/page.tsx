@@ -12,15 +12,11 @@ import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-// interface HomePageProps {
-//   searchParams?: Record<string, string | undefined>; // Correctly define searchParams type
-// }
+interface HomePageProps {
+  searchParams: Record<string, string | undefined>;
+}
 
-const HomePage = ({
-  searchParams,
-}: {
-  searchParams: { month?: string; year?: string };
-}) => {
+const HomePage = ({ searchParams }: HomePageProps) => {
   const currentDate = new Date();
 
   const {month,year} = searchParams;
