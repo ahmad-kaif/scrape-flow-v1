@@ -1,4 +1,3 @@
-"use server";
 import { GetPeriods } from "@/actions/analytics/getPeriods";
 import React, { Suspense } from "react";
 import PeriodSelector from "./_components/PeriodSelector";
@@ -12,19 +11,12 @@ import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-<<<<<<< HEAD
-interface HomePageProps {
-  searchParams: Record<string, string | undefined>;
-}
-
-const HomePage = ({ searchParams }: HomePageProps) => {
-=======
-// Corrected interface
-interface HomePageProps {
-  searchParams: { 
-    [key: string]: string | string[] | undefined 
-  };
-}
+// // Corrected interface
+// interface HomePageProps {
+//   searchParams: { 
+//     [key: string]: string | string[] | undefined 
+//   };
+// }
 
 
 const HomePage = ({
@@ -35,22 +27,12 @@ const HomePage = ({
     year?: string;
   };
 }) => {
->>>>>>> b14eb8e (.)
   const currentDate = new Date();
-
-  const {month,year} = searchParams;
+  const { month, year } = searchParams;
   const period: Period = {
-    month: month? parseInt(month) : currentDate.getMonth(),
-    year: year? parseInt(year) : currentDate.getFullYear(),
-  }
-  // const month = searchParams.month
-  //   ? parseInt(searchParams.month, 10)
-  //   : currentDate.getMonth() + 1;
-  // const year = searchParams.year
-  //   ? parseInt(searchParams.year, 10)
-  //   : currentDate.getFullYear();
-
-  // const period: Period = { month, year };
+    month: month ? parseInt(month) : currentDate.getMonth(),
+    year: year ? parseInt(year) : currentDate.getFullYear(),
+  };
 
   return (
     <div className="flex flex-1 flex-col h-full">
@@ -117,28 +99,24 @@ function StatsCardSkeleton() {
   );
 }
 
-async function StatsExecutionStatus({
-  selectedPeriod,
-}: {
-  selectedPeriod: Period;
-}) {
-  const data = await GetWorkflowExecutionStats(selectedPeriod);
-  return <ExecutionStatusChart data={data} />;
-}
 
+async function StatsExecutionStatus({
+  selectedPeriod
+}:{
+  selectedPeriod: Period
+}){
+  const data = await GetWorkflowExecutionStats(selectedPeriod);
+
+  return <ExecutionStatusChart data={data}/>
+}
 async function CreditsUsageInPeriod({
-  selectedPeriod,
-}: {
-  selectedPeriod: Period;
-}) {
+  selectedPeriod
+}:{
+  selectedPeriod: Period
+}){
   const data = await GetCreditUsageInPeriod(selectedPeriod);
-  return (
-    <CreditUsageChart
-      data={data}
-      title="Daily credits spent"
-      description="Daily credit consumed in selected period"
-    />
-  );
+
+  return <CreditUsageChart data={data} title="Daily credits spent" description="Daily credit consumed in selected period"/>
 }
 
 export default HomePage;
