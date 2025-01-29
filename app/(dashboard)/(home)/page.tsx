@@ -15,7 +15,7 @@ interface HomePageProps {
   searchParams?: Record<string, string | undefined>; // Correctly define searchParams type
 }
 
-const HomePage = ({ searchParams = {} }: HomePageProps) => {
+const HomePage =  async ({ searchParams = {} }: HomePageProps) => {
   const currentDate = new Date();
   const month = searchParams.month ? parseInt(searchParams.month, 10) : currentDate.getMonth() + 1;
   const year = searchParams.year ? parseInt(searchParams.year, 10) : currentDate.getFullYear();
