@@ -17,7 +17,7 @@ import UserAvailableCreditsBadge from "./UserAvailableCreditsBadge";
 
 const routes = [
   {
-    href: "/",
+    href: "",
     label: "Home",
     icon: HomeIcon,
   },
@@ -55,7 +55,7 @@ function DesktopSidebar() {
         {routes.map((route) => (
           <Link
             key={route.href}
-            href={route.href}
+            href={`/${route.href}`}
             className={buttonVariants({
               variant:
                 activeRoute.href === route.href
@@ -99,7 +99,7 @@ export function MobileSidebar() {
               {routes.map((route) => (
                 <Link
                   key={route.href}
-                  href={route.href}
+                  href={`/${route.href}`}
                   className={buttonVariants({
                     variant:
                       activeRoute.href === route.href
