@@ -22,13 +22,13 @@ import CreditUsageChart from "../billing/_components/CreditUsageChart";
 const HomePage = ({
   searchParams,
 }: {
-  searchParams: {
-    month?: string;
-    year?: string;
+  searchParams?: { 
+    month?: string; 
+    year?: string; 
   };
 }) => {
   const currentDate = new Date();
-  const { month, year } = searchParams;
+  const { month, year } = searchParams || {};
   const period: Period = {
     month: month ? parseInt(month) : currentDate.getMonth(),
     year: year ? parseInt(year) : currentDate.getFullYear(),
