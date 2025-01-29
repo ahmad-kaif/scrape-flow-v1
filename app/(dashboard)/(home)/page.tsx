@@ -12,11 +12,30 @@ import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
+<<<<<<< HEAD
 interface HomePageProps {
   searchParams: Record<string, string | undefined>;
 }
 
 const HomePage = ({ searchParams }: HomePageProps) => {
+=======
+// Corrected interface
+interface HomePageProps {
+  searchParams: { 
+    [key: string]: string | string[] | undefined 
+  };
+}
+
+
+const HomePage = ({
+  searchParams,
+}: {
+  searchParams: {
+    month?: string;
+    year?: string;
+  };
+}) => {
+>>>>>>> b14eb8e (.)
   const currentDate = new Date();
 
   const {month,year} = searchParams;
