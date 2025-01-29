@@ -12,18 +12,16 @@ import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeri
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
 interface HomePageProps {
-  searchParams: Record<string, string | undefined> | Promise<Record<string, string | undefined>>; 
+  searchParams?: Record<string, string | undefined>; // Correctly define searchParams type
 }
 
-
-const HomePage = async ({ searchParams = {} }: HomePageProps) => {
-  const resolvedSearchParams = searchParams instanceof Promise ? await searchParams : searchParams;
+const HomePage = ({ searchParams = {} }: HomePageProps) => {
   const currentDate = new Date();
-  const month = resolvedSearchParams.month
-    ? parseInt(resolvedSearchParams.month, 10)
+  const month = searchParams.month
+    ? parseInt(searchParams.month, 10)
     : currentDate.getMonth() + 1;
-  const year = resolvedSearchParams.year
-    ? parseInt(resolvedSearchParams.year, 10)
+  const year = searchParams.year
+    ? parseInt(searchParams.year, 10)
     : currentDate.getFullYear();
 
   const period: Period = { month, year };
