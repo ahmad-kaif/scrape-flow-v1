@@ -10,16 +10,21 @@ import { GetWorkflowExecutionStats } from "@/actions/analytics/getWorkflowExecut
 import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
-import { Metadata } from "next";
 
 interface HomePageProps {
-  searchParams: Record<string, string | undefined |undefined>; // Correctly define searchParams type
+  searchParams: Record<string, string | undefined> | Promise<Record<string, string | undefined>>; 
 }
 
-const HomePage =  async ({ searchParams = {} }: HomePageProps) => {
+
+const HomePage = async ({ searchParams = {} }: HomePageProps) => {
+  const resolvedSearchParams = searchParams instanceof Promise ? await searchParams : searchParams;
   const currentDate = new Date();
-  const month = searchParams.month ? parseInt(searchParams.month, 10) : currentDate.getMonth() + 1;
-  const year = searchParams.year ? parseInt(searchParams.year, 10) : currentDate.getFullYear();
+  const month = resolvedSearchParams.month
+    ? parseInt(resolvedSearchParams.month, 10)
+    : currentDate.getMonth() + 1;
+  const year = resolvedSearchParams.year
+    ? parseInt(resolvedSearchParams.year, 10)
+    : currentDate.getFullYear();
 
   const period: Period = { month, year };
 
@@ -46,7 +51,11 @@ const HomePage =  async ({ searchParams = {} }: HomePageProps) => {
   );
 };
 
-async function PeriodSelectorWrapper({ selectedPeriod }: { selectedPeriod: Period }) {
+async function PeriodSelectorWrapper({
+  selectedPeriod,
+}: {
+  selectedPeriod: Period;
+}) {
   const periods = await GetPeriods();
   return <PeriodSelector selectedPeriod={selectedPeriod} periods={periods} />;
 }
@@ -55,9 +64,21 @@ async function StatsCards({ selectedPeriod }: { selectedPeriod: Period }) {
   const data = await GetStatsCardsValues(selectedPeriod);
   return (
     <div className="grid gap-3 lg:gap-8 lg:grid-cols-3 min-h-[120px]">
-      <StatsCard title="Workflow execution" value={data.workflowExecutions} icon={CirclePlayIcon} />
-      <StatsCard title="Phase execution" value={data.phaseExecutions} icon={WaypointsIcon} />
-      <StatsCard title="Credits Consumed" value={data.creditsConsumed} icon={CoinsIcon} />
+      <StatsCard
+        title="Workflow execution"
+        value={data.workflowExecutions}
+        icon={CirclePlayIcon}
+      />
+      <StatsCard
+        title="Phase execution"
+        value={data.phaseExecutions}
+        icon={WaypointsIcon}
+      />
+      <StatsCard
+        title="Credits Consumed"
+        value={data.creditsConsumed}
+        icon={CoinsIcon}
+      />
     </div>
   );
 }
@@ -72,14 +93,28 @@ function StatsCardSkeleton() {
   );
 }
 
-async function StatsExecutionStatus({ selectedPeriod }: { selectedPeriod: Period }) {
+async function StatsExecutionStatus({
+  selectedPeriod,
+}: {
+  selectedPeriod: Period;
+}) {
   const data = await GetWorkflowExecutionStats(selectedPeriod);
   return <ExecutionStatusChart data={data} />;
 }
 
-async function CreditsUsageInPeriod({ selectedPeriod }: { selectedPeriod: Period }) {
+async function CreditsUsageInPeriod({
+  selectedPeriod,
+}: {
+  selectedPeriod: Period;
+}) {
   const data = await GetCreditUsageInPeriod(selectedPeriod);
-  return <CreditUsageChart data={data} title="Daily credits spent" description="Daily credit consumed in selected period" />;
+  return (
+    <CreditUsageChart
+      data={data}
+      title="Daily credits spent"
+      description="Daily credit consumed in selected period"
+    />
+  );
 }
 
 export default HomePage;
