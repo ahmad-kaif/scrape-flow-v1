@@ -11,24 +11,18 @@ import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-// // Corrected interface
-// interface HomePageProps {
-//   searchParams: { 
-//     [key: string]: string | string[] | undefined 
-//   };
-// }
 
 
 const HomePage = ({
   searchParams,
 }: {
-  searchParams?: { 
-    month?: string; 
-    year?: string; 
+  searchParams: {
+    month?: string;
+    year?: string;
   };
 }) => {
   const currentDate = new Date();
-  const { month, year } = searchParams || {};
+  const { month, year } = searchParams;
   const period: Period = {
     month: month ? parseInt(month) : currentDate.getMonth(),
     year: year ? parseInt(year) : currentDate.getFullYear(),
