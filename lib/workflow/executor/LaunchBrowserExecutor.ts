@@ -1,6 +1,7 @@
 import { Environment, ExecutionEnvironment } from "@/types/executor";
 import puppeteer from "puppeteer";
 import { LaunchBrowserTask } from "../task/LaunchBrowser";
+import { waitFor } from "@/lib/helper/waitFor";
 
 export async function LaunchBrowserExecutor(
   environment: ExecutionEnvironment<typeof LaunchBrowserTask>
