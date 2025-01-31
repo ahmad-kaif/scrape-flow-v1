@@ -11,11 +11,17 @@ import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-const HomePage = ({ searchParams }: { searchParams: URLSearchParams }) => {
+
+
+const HomePage = ({
+  searchParams,
+}: {
+  searchParams: Record<string, string | string[] | undefined>;
+} )  => {
   const currentDate = new Date();
-  // const { month, year } = searchParams;
-  const month = searchParams.get("month");
-  const year = searchParams.get("year");
+  const month = typeof searchParams.month === "string" ? searchParams.month : undefined;
+  const year = typeof searchParams.year === "string" ? searchParams.year : undefined;
+
   const period: Period = {
     month: month ? parseInt(month) : currentDate.getMonth(),
     year: year ? parseInt(year) : currentDate.getFullYear(),
