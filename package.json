@@ -72,6 +72,7 @@
     "vaul": "^1.1.2",
     "zod": "^3.24.1"
   },
+  
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.62.11",
     "@types/node": "^20",
