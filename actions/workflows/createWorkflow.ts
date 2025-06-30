@@ -1,5 +1,4 @@
 "use server";
-
 import prisma from "@/lib/prisma";
 import { CreateFlowNode } from "@/lib/workflow/createFlowNode";
 import {
@@ -25,9 +24,9 @@ export async function CreateWorkflow(form: createWorkflowSchemaType) {
     throw new Error("unauthorized");
   }
 
-  const initialFlow : {nodes: AppNode[]; edges: Edge[] } = {
-    nodes:[],
-    edges:[],
+  const initialFlow: { nodes: AppNode[]; edges: Edge[] } = {
+    nodes: [],
+    edges: [],
   };
 
   initialFlow.nodes.push(CreateFlowNode(TaskType.LAUNCH_BROWSER))
