@@ -16,12 +16,39 @@
 
 ---
 
+## 📸 Screenshots
+
+### 🏠 Homepage
+![Homepage](./home_.png)
+
+### 📊 Workflow Page
+![Dashboard](./workflow_page.png)
+
+### 🎥 Credentials Page
+![Credentials Page](./credentials_.png)
+
+### 🪭 Billing Page
+![Billing Page](./billing_.png)
+
+### 👀 Workflow Editor(Powered by React Flow)
+![Workflow editor](./workflow_editor.png)
+
+### 👟 Worklow Run
+![Workflow run](./workflow_run.png)
+
+### 🕺 All Runs of a Worklow 
+![Live Class](./all_runs.png)
+
+
 ## 📦 Tech Stack
 
-- **Frontend**: Next.js, Tailwind CSS
+- **Frontend**: Next.js, Tailwind CSS, ShadCN, Zod, React Query, React Flow(Nodes and Edges)
 - **Scraping Logic**: Puppeteer
-- **Headless Browser Execution**: Puppeteer or Cloud Functions (optional)
-- **Export**: Download flow as JSON or execute in backend
+- **Headless Browser Execution**: Puppeteer Chromium
+- **Schedule Workflows**: Cron Jobs
+- **Publish workflows**: Once published can be scheduled
+- **Credentials**: Use Secure credentials in the workflow
+- **Billing**: Buy More credits to make new scraping logics
 
 ---
 
@@ -30,6 +57,6 @@
 First, clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-username/flowscrape.git
+git clone https://github.com/your-username/scrape-flow-v1.git
 cd flowscrape
 npm install
