@@ -42,8 +42,8 @@
 
 ## 📦 Tech Stack
 
-- **Frontend**: Next.js, Tailwind CSS, ShadCN, Zod, Tanstack Query, React Flow
-- **Scraping Logic**: Puppeteer, Cheerio
+- **Stack**: Next.js, Typescript, React Flow, ShadCN, Zod, Tanstack Query, Prisma ORM
+- **Scraping Logic**: Puppeteer, Cheerio, Graph theory(Topo Sort & Cycle detection in DG)
 - **Headless Browser Execution**: Puppeteer Chromium
 - **Schedule Workflows**: Cron Jobs
 - **Publish workflows**: Once published can be scheduled
