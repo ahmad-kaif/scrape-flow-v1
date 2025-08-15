@@ -7,12 +7,12 @@
 ## 🚀 Features
 
 - 🔧 Visual scraper flow builder
-- 📄 DOM element selection and preview
-- 💾 Exportable JSON flow schema
-- 🧪 Real-time testing of selectors
-- 💻 Built with Next.js + Tailwind CSS
-- 🔐 Secure execution sandbox (optional)
-- ☁️ Cloud-ready for headless deployments
+- 🔧 Schedule workflow using cron jobs
+- 📄 Scrape data from different websites using no code interface
+- 💾 Extract Data with AI
+- 🧪 Complete Logs of Workflow Executions
+- 🔐 Secure authentication using Clerk
+- ☁️ Secure workflows and credentials system
 
 ---
 
@@ -42,21 +42,13 @@
 
 ## 📦 Tech Stack
 
-- **Frontend**: Next.js, Tailwind CSS, ShadCN, Zod, React Query, React Flow(Nodes and Edges)
-- **Scraping Logic**: Puppeteer
+- **Frontend**: Next.js, Tailwind CSS, ShadCN, Zod, Tanstack Query, React Flow
+- **Scraping Logic**: Puppeteer, Cheerio
 - **Headless Browser Execution**: Puppeteer Chromium
 - **Schedule Workflows**: Cron Jobs
 - **Publish workflows**: Once published can be scheduled
 - **Credentials**: Use Secure credentials in the workflow
-- **Billing**: Buy More credits to make new scraping logics
+- **Billing**: Buy More credits to make new scraping logics(currently working)
 
 ---
 
-## 🛠️ Getting Started
-
-First, clone the repository and install dependencies:
-
-```bash
-git clone https://github.com/your-username/scrape-flow-v1.git
-cd flowscrape
-npm install
