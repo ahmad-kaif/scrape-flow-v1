@@ -16,6 +16,16 @@
 
 ---
 
+## 📦 Tech Stack
+
+- **Stack**: Next.js, Typescript, React Flow, ShadCN, Zod, Tanstack Query, Prisma ORM with SQLlite, Clerk(AaaS)
+- **Scraping Logic**: Puppeteer, Cheerio, Graph theory(Serialization and desrialization, Topo Sort(Kahn's Algo) & Cycle detection in Directed Graph)
+- **Headless Browser Execution**: Puppeteer Chromium
+- **Schedule Workflows**: Cron Jobs, Cron-parser, Cronstrue
+- **Publish workflows**: Once published can be scheduled
+- **Credentials**: Use Secure credentials in the workflow(Open API key and make the workflow AI powered)
+- **Billing**: Buy More credits to make new scraping logics(currently working)
+
 ## 📸 Screenshots
 
 ### 🏠 Homepage
@@ -40,15 +50,7 @@
 ![Live Class](./all_runs.png)
 
 
-## 📦 Tech Stack
 
-- **Stack**: Next.js, Typescript, React Flow, ShadCN, Zod, Tanstack Query, Prisma ORM
-- **Scraping Logic**: Puppeteer, Cheerio, Graph theory(Topo Sort & Cycle detection in DG)
-- **Headless Browser Execution**: Puppeteer Chromium
-- **Schedule Workflows**: Cron Jobs
-- **Publish workflows**: Once published can be scheduled
-- **Credentials**: Use Secure credentials in the workflow
-- **Billing**: Buy More credits to make new scraping logics(currently working)
 
 ---
 
